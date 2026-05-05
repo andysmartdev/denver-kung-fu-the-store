@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Your Jong Is Reserved — Denver Kung Fu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <nav class="nav nav--scrolled" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Denver Kung Fu — Home">
+        <img src="assets/Denver-Logo_Long.webp" alt="Denver Kung Fu">
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="the-jong.html">The Jong</a></li>
+        <li><a href="index.html#lineage">The Lineage</a></li>
+        <li class="nav__cta"><a href="reserve.html">Reserve Yours</a></li>
+        <li class="nav__ext"><a href="https://www.denverkungfu.com" target="_blank" rel="noopener">Denver Kung Fu ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Success Content ────────────────────────────────────── -->
+  <main class="success-page" aria-label="Order confirmation">
+    <div class="container">
+      <div class="success-card">
+
+        <span class="success-card__chinese" aria-hidden="true">謝謝</span>
+
+        <h1 id="successHeading">Your Jong Is Reserved</h1>
+        <p id="successBody">
+          Your payment has been received. You are now in the queue.
+          Mike Kilcoyne will be in touch soon to confirm your build details.
+        </p>
+
+        <div class="success-steps" role="list">
+
+          <div class="success-step" role="listitem">
+            <span class="success-step__num">1</span>
+            <div>
+              <span class="success-step__title">Confirmation Email</span>
+              <p class="success-step__body">
+                Check your inbox for a Stripe receipt confirming your payment.
+                Keep it for your records.
+              </p>
+            </div>
+          </div>
+
+          <div class="success-step" role="listitem">
+            <span class="success-step__num">2</span>
+            <div>
+              <span class="success-step__title">Mike Will Reach Out</span>
+              <p class="success-step__body">
+                Within a few days, Mike Kilcoyne will contact you by email to introduce
+                himself, confirm your build specifications, and answer any questions.
+              </p>
+            </div>
+          </div>
+
+          <div class="success-step" role="listitem">
+            <span class="success-step__num">3</span>
+            <div>
+              <span class="success-step__title">Your Jong Is Built</span>
+              <p class="success-step__body">
+                Mike builds one jong at a time, with care. Expect a build time of 3–6 months.
+                He'll keep you informed throughout the process.
+              </p>
+            </div>
+          </div>
+
+          <div class="success-step" role="listitem">
+            <span class="success-step__num">4</span>
+            <div>
+              <span class="success-step__title">Delivery</span>
+              <p class="success-step__body">
+                When your jong is complete, Mike will coordinate delivery.
+                Then it's yours — for life.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;">
+          <a href="https://www.denverkungfu.com" target="_blank" rel="noopener" class="btn btn--primary">
+            Visit Denver Kung Fu ↗
+          </a>
+          <a href="the-jong.html" class="btn btn--ghost">
+            Back to The Jong
+          </a>
+        </div>
+
+        <p style="margin-top:2rem; font-size:0.78rem; color:rgba(255,255,255,0.28);">
+          Questions? Email
+          <a href="mailto:admin@denverkungfu.com" style="color:rgba(255,255,255,0.5); text-decoration:underline; text-underline-offset:2px;">admin@denverkungfu.com</a>
+          or call <a href="tel:3032848125" style="color:rgba(255,255,255,0.5);">(303) 284-8125</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* Verify payment with Stripe via server */
+    (function () {
+      const params    = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      const card      = document.querySelector('.success-card');
+      const heading   = document.getElementById('successHeading');
+      const body      = document.getElementById('successBody');
+
+      if (!sessionId) {
+        heading.textContent = 'No Order Found';
+        body.textContent    = 'We could not locate your order. If you completed a payment, please check your email for a Stripe receipt or contact us.';
+        return;
+      }
+
+      fetch('/verify-session?session_id=' + encodeURIComponent(sessionId))
+        .then(r => r.json())
+        .then(data => {
+          if (!data.verified) {
+            heading.textContent = 'Payment Not Confirmed';
+            body.textContent    = 'Your payment could not be verified. If you believe this is an error, please contact admin@denverkungfu.com with your Stripe receipt.';
+          }
+          // If verified, page shows as-is
+        })
+        .catch(() => {
+          // Network error — don't disrupt the user; Stripe email receipt is source of truth
+        });
+    })();
+  </script>
