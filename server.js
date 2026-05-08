@@ -6,7 +6,7 @@ const path    = require('path');
 const stripe  = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app      = express();
-const PORT     = process.env.PORT     || 3000;
+const PORT     = 3001;//process.env.PORT     || 3000;
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 
 const PRICE_CENTS = 250000; // $2,500.00

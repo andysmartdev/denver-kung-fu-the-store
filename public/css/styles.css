@@ -178,6 +178,22 @@ p  {
 @media (min-width: 1200px) { .section { padding: 9rem 0; } }
 
 .section--dark  { background: var(--dark-bg);  color: white; }
+.section--dark-img {
+  background-color: var(--dark-bg);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.section--dark-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/JongWall_narrow.JPEG');
+  background-size: cover;
+  background-position: top center;
+  opacity: 0.18;
+}
+.section--dark-img > * { position: relative; z-index: 1; }
 .section--dark p { color: rgba(255,255,255,0.65); }
 .section--dark h2,
 .section--dark h3 { color: white; }
@@ -296,7 +312,7 @@ p  {
     repeating-linear-gradient(0deg,   transparent, transparent 28px, rgba(255,255,255,0.004) 28px, rgba(255,255,255,0.004) 29px);
   pointer-events: none;
 }
-/* Red vertical accent stripe */
+/* Red vertical accent stripe — hidden when hero has background image */
 .hero::after {
   content: '';
   position: absolute;
@@ -305,6 +321,7 @@ p  {
   background: var(--red);
   opacity: 0.9;
 }
+.hero--bg::after { display: none; }
 .hero__watermark {
   position: absolute;
   right: 1rem; top: 50%;
@@ -458,15 +475,17 @@ p  {
   border-top: 1px solid rgba(255,255,255,0.07);
   border-right: 1px solid rgba(255,255,255,0.07);
   border-bottom: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.03);
+  background: rgba(14,12,10,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   transition: background var(--ease);
 }
-.lineage-node:hover { background: rgba(255,255,255,0.05); }
+.lineage-node:hover { background: rgba(14,12,10,0.8); }
 .lineage-node--denver {
   border-left-color: var(--red);
-  background: rgba(195,38,45,0.06);
+  background: rgba(14,12,10,0.75);
 }
-.lineage-node--denver:hover { background: rgba(195,38,45,0.09); }
+.lineage-node--denver:hover { background: rgba(14,12,10,0.85); }
 
 .lineage-node__era {
   display: block;
@@ -1014,3 +1033,79 @@ p  {
 .fade-in:nth-child(3) { transition-delay: 0.2s; }
 .fade-in:nth-child(4) { transition-delay: 0.3s; }
 .fade-in:nth-child(5) { transition-delay: 0.4s; }
+
+/* ============================================================
+   PRODUCT IMAGES
+   ============================================================ */
+
+/* Hero background image (index.html) */
+.hero--bg {
+  background-image:
+    linear-gradient(to right, rgba(14,12,10,0.82) 0%, rgba(14,12,10,0.55) 100%),
+    url('../assets/JongWall_wide.JPEG');
+  background-size: cover;
+  background-position: top center;
+}
+
+/* Page hero background (the-jong.html) */
+.page-hero--bg {
+  background-image:
+    linear-gradient(to right, rgba(14,12,10,0.84) 0%, rgba(14,12,10,0.6) 100%),
+    url('../assets/Jong_6.JPEG');
+  background-size: cover;
+  background-position: center top;
+}
+
+/* Split section product images */
+.split__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+}
+
+/* Gallery real images */
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery__main img {
+  aspect-ratio: 2/3;
+}
+.gallery__thumb {
+  overflow: hidden;
+}
+.gallery__thumb img {
+  aspect-ratio: 1/1;
+}
+
+/* Reserve page product thumbnail */
+.summary-product__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+/* Cinematic divider band */
+.divider-band {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.divider-band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.divider-band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(14,12,10,0.15), rgba(14,12,10,0.15));
+  pointer-events: none;
+}
