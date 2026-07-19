@@ -107,28 +107,37 @@ iframe from `src`. (Self-hosted `<video>` isn't wired today; it's a small additi
 
 ---
 
-## Deploying
+## Deploying (Cloudflare Pages)
 
-`.github/workflows/deploy.yml` publishes `public/` to **GitHub Pages** on every push to
-**`main`**. Current working branch: `revise-for-initial-launch`. Merge/push to `main`
-when ready to go live.
+Hosting is **Cloudflare Pages**, connected to this GitHub repo. It builds and deploys
+**per branch** — no GitHub Actions workflow (the old `.github/workflows/deploy.yml` was
+removed when we moved off GitHub Pages).
 
-### Pointing a custom domain
+Cloudflare Pages project settings:
+- **Production branch:** `production`  → serves **https://denverkungfu-jongs.com**
+- **Build command:** `npm run build`
+- **Build output directory:** `public`
+- Every other branch (esp. **`develop`**) gets an automatic **preview URL**
+  (`<branch>.<project>.pages.dev`) — this is the always-on test site.
 
-Do **not** commit a `CNAME` file — the deploy action (peaceiris) rewrites the Pages
-branch each run and a stale/placeholder CNAME will knock the site off its URL. Instead,
-when DNS is ready, add the `cname` input to the workflow:
+### Branch strategy
 
-```yaml
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          cname: yourdomain.com     # <-- add this line
-```
+- **`develop`** — the default branch and integration branch. We do **not** commit
+  directly to it; feature work happens on branches that merge into `develop`. Pushing to
+  `develop` auto-deploys to its preview URL.
+- **`production`** — the live site. Merging `develop` → `production` (when we're happy
+  with the preview) deploys to the real domain.
+- `main` is retired.
 
-…and point the domain's DNS at GitHub Pages per GitHub's docs (A/AAAA records for an
-apex domain, or a CNAME record for a subdomain).
+Typical flow: work on a feature branch → merge to `develop` → check the preview URL →
+merge `develop` → `production` → live.
+
+### Custom domain
+
+Because the domain is registered in the same Cloudflare account, adding it in
+**Pages → project → Custom domains** (`denverkungfu-jongs.com` + `www`) auto-creates the
+DNS records — no manual A/CNAME setup. The site's canonical/OG URLs already point at
+`https://www.denverkungfu-jongs.com` (see `site.config.js` → `site.origin`).
 
 ---
 
