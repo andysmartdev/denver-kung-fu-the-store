@@ -54,8 +54,8 @@ function build() {
   }
   let html = fs.readFileSync(SRC, 'utf8');
 
-  // 1. Render the video grid block: {{@videos}} → both tiles.
-  html = html.replace('{{@videos}}', config.videos.map(renderVideoTile).join('\n\n'));
+  // 1. Render the video grid block: {{@videos}} → both tiles (global: any occurrence).
+  html = html.replaceAll('{{@videos}}', config.videos.map(renderVideoTile).join('\n\n'));
 
   // 2. Scalar substitution: {{dot.path}} → value.
   html = html.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, dotPath) => {

@@ -145,7 +145,11 @@
     </div>
   </section>
 
-  <!-- ── Video showcase (click-to-load facade) ──────────────── -->
+  <!-- ── Video showcase (click-to-load facade) ──────────────────
+       REMOVED FOR LAUNCH (no content yet). To restore when videos exist,
+       uncomment the block below; it renders config.videos automatically.
+       The facade JS + .video-* CSS are still present and dormant.
+
   <section class="section section--dark" id="watch" aria-label="Videos">
     <div class="container text-center">
       <span class="label label--light">Watch</span>
@@ -156,8 +160,7 @@
     </div>
     <div class="container">
       <div class="video-grid">
-
-        <button type="button" class="video-tile fade-in" data-src="" aria-label="Play video: Meet the Maker (coming soon)">
+                <button type="button" class="video-tile fade-in" data-src="" aria-label="Play video: Meet the Maker (coming soon)">
           <span class="video-tile__poster" style="background-image:url('assets/jong-4.webp')" aria-hidden="true"></span>
           <span class="video-tile__overlay" aria-hidden="true"></span>
           <span class="video-tile__play" aria-hidden="true">▶</span>
@@ -178,7 +181,35 @@
             <span class="video-tile__note">Coming soon</span>
           </span>
         </button>
+      </div>
+    </div>
+  </section>
+  ──────────────────────────────────────────────────────────── -->
 
+  <!-- ── Materials ──────────────────────────────────────────── -->
+  <section class="section section--dark" id="materials" aria-label="Materials">
+    <div class="container">
+      <div class="split">
+        <div class="split__text fade-in">
+          <span class="label label--light">Materials &amp; Craft</span>
+          <h2>Built from Solid Hardwood</h2>
+          <div class="divider"></div>
+          <p class="lead">
+            Each jong is made from <strong>ash</strong>, sourced locally from
+            Denver-area arborists.
+          </p>
+          <p>
+            The supporting frame is built from <strong>oak</strong>, and every jong is
+            finished by hand with <strong>tung oil</strong> — a traditional finish that
+            protects the wood while letting the natural grain show through.
+          </p>
+          <p>
+            Every jong comes with a custom frame, built to fit your space.
+          </p>
+        </div>
+        <div class="split__media fade-in">
+          <img src="assets/jong-4.webp" alt="Detail of the jong's ash body and oak frame, hand-finished with tung oil" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
@@ -192,8 +223,7 @@
       <p class="section-intro">
         Every jong carries an unbroken chain of knowledge — from the founding masters
         of Ving Tsun through Grandmaster Yip Man, Moy Yat, Moy Tung, and Moy Yat Tung
-        to the training floor of Denver Kung Fu, founded by Sifu Ely Matson. Mike builds
-        within that tradition.
+        to the training floor of Denver Kung Fu. Mike builds within that tradition.
       </p>
       <a href="https://www.denverkungfu.com/lineage" target="_blank" rel="noopener" class="link-arrow link-arrow--spaced">See the Full Lineage at Denver Kung Fu →</a>
     </div>
