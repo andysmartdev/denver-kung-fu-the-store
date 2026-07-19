@@ -202,6 +202,8 @@ p  {
 }
 .section--dark-img > * { position: relative; z-index: 1; }
 .section--dark p { color: rgba(255,255,255,0.65); }
+.section--dark .lead { color: white; }
+.section--dark p strong { color: white; font-weight: 500; }
 .section--dark h2,
 .section--dark h3 { color: white; }
 .section--cream { background: var(--cream); }
