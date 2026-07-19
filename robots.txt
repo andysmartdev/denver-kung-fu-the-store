@@ -1,0 +1,5 @@
+# robots.txt — Denver Kung Fu Jongs
+User-agent: *
+Allow: /
+
+Sitemap: https://www.denverkungfu-jongs.com/sitemap.xml
