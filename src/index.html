@@ -35,10 +35,7 @@
       <a href="#top" class="nav__logo" aria-label="Denver Kung Fu — Home">
         <img src="assets/Denver-Logo_Long.webp" alt="Denver Kung Fu">
       </a>
-      <a href="{{phone.tel}}" class="nav__call" aria-label="Call or Text {{phone.display}}">
-        <span class="nav__call-short">Call or Text</span>
-        <span class="nav__call-full">{{phone.cta}}</span>
-      </a>
+      <a href="{{emailHref}}" class="nav__call" aria-label="Email Us">{{emailCta}}</a>
     </div>
   </nav>
 
@@ -57,7 +54,7 @@
         locally sourced American hardwood by Mike Kilcoyne of Denver Kung Fu.
       </p>
       <div class="hero__actions">
-        <a href="{{phone.tel}}" class="btn btn--primary">{{phone.cta}}</a>
+        <a href="{{emailHref}}" class="btn btn--primary">{{emailCta}}</a>
         <a href="#gallery" class="btn btn--ghost">See the Craft</a>
       </div>
     </div>
@@ -193,11 +190,7 @@
         Each jong is made to order, one at a time. Reach out and Mike will
         walk you through your build.
       </p>
-      <div class="contact-lines">
-        <a href="{{phone.tel}}" class="contact-line">
-          <span class="contact-line__label">Call or Text</span>
-          <span class="contact-line__value">{{phone.display}}</span>
-        </a>
+      <div class="contact-lines contact-lines--single">
         <a href="{{emailHref}}" class="contact-line">
           <span class="contact-line__label">Email</span>
           <span class="contact-line__value">{{email}}</span>
@@ -228,7 +221,6 @@
         <div class="footer__col footer__contact">
           <h4>Contact</h4>
           <p>{{address.line1}}<br>{{address.line2}}</p>
-          <p><a href="{{phone.tel}}">{{phone.ctaColon}}</a></p>
           <p><a href="{{emailHref}}">{{email}}</a></p>
         </div>
 

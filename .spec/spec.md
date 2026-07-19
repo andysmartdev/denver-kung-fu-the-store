@@ -96,6 +96,16 @@ stay inline but are config-driven), and converted CSS `px`→`rem` for dimension
 `px`→`em` for media-query breakpoints (accessibility: respects user font-size/zoom). Kept `px`
 deliberately for hairline borders/outlines/blur/decorative gradients.
 
+## Content change (2026-07-19) — email-only contact
+
+Sifu: "just the email for now." Removed the phone number and every reference (nav CTA,
+hero CTA, contact section, footer, `tel:`/`sms:` links, meta copy). This is why the
+config layer earned its keep — content removal was a few edits in `site.config.js`, and
+layout only changed where the phone was structural: nav + hero buttons → "Email Us";
+contact section's two-card row → one centered card (`.contact-lines--single`); dropped
+the now-unused `.nav__call-short/full` responsive label hack. Phone can be re-added from
+git history if needed.
+
 ## Definition of Done (Verify)
 
 - P1 acceptance all pass against the rendered page in a real browser (desktop + mobile viewport).

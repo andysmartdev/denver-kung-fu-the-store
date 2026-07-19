@@ -252,15 +252,11 @@ p  {
   background: rgba(255,255,255,0.08);
   border-color: rgba(255,255,255,0.65);
 }
-.nav__call-full  { display: none; }
-.nav__call-short { display: inline; }
 @media (min-width: 48em) {
   .nav__call {
     font-size: 0.7rem;
     padding: 0.6rem 1.4rem;
   }
-  .nav__call-full  { display: inline; }
-  .nav__call-short { display: none; }
 }
 
 /* ============================================================
@@ -674,6 +670,9 @@ p  {
   margin: 2.5rem auto 0;
 }
 @media (min-width: 35em) { .contact-lines { flex-direction: row; } }
+/* Single card (email-only): keep it narrow + centered rather than full-width */
+.contact-lines--single { max-width: 22rem; }
+@media (min-width: 35em) { .contact-lines--single { flex-direction: column; } }
 
 .contact-line {
   flex: 1;

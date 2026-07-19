@@ -5,7 +5,7 @@ built by Mike Kilcoyne of Denver Kung Fu. It's a **business card**: photos and v
 of the jong and its maker, with a clear call-to-action to **call, text, or email** to
 inquire. No online payments, no forms, no server — just a fast static page.
 
-**Contact on the site:** Call or Text (303) 284-8125 · admin@denverkungfu.com
+**Contact on the site:** admin@denverkungfu.com (email only for now)
 
 ---
 
@@ -16,7 +16,7 @@ author-time build steps produce the committed output, so the **deployed site is 
 static** — no build runs on the visitor's browser or on the deploy host.
 
 ```
-site.config.js        SINGLE SOURCE OF TRUTH — phone, email, address, meta, video tiles
+site.config.js        SINGLE SOURCE OF TRUTH — email, address, meta, video tiles
 src/index.html        HTML template (edit layout here; uses {{placeholders}})
 scripts/
   build-html.js       stamps site.config.js into public/index.html
@@ -45,13 +45,18 @@ npm run html       # just re-stamp public/index.html from the template + config
 ```
 
 `npm run html` fails loudly if the template has an unresolved `{{placeholder}}`, so a
-typo can't ship a literal `{{phone.display}}` to the page.
+typo can't ship a literal `{{email}}` to the page.
 
-### Changing the phone number, email, etc.
+### Changing the email, address, etc.
 
 Edit the value **once** in `site.config.js`, run `npm run build`, commit. It updates
-everywhere it appears (hero, nav, contact cards, footer, `tel:`/`sms:`/`mailto:` links,
-and the page metadata) — no find-and-replace.
+everywhere it appears (hero, nav, contact card, footer, `mailto:` links, and the page
+metadata) — no find-and-replace.
+
+> Contact is **email-only** right now (phone removed at Sifu's request). To add a phone
+> back later: re-add a `phone` object to `site.config.js` and wire `tel:`/`sms:` buttons
+> in `src/index.html` — the nav/hero/contact layout that held two contact methods is in
+> git history (commit before this one) if you want it back.
 
 To preview locally, open `public/index.html` in a browser (or serve `public/` with any
 static server).
