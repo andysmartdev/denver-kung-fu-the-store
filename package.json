@@ -1,16 +1,15 @@
 {
-  "name": "denver-kung-fu-jong-store",
-  "version": "1.0.0",
-  "description": "Muk Yan Jong online store — Denver Kung Fu",
-  "main": "server.js",
+  "name": "denver-kung-fu-the-jong",
+  "version": "2.0.0",
+  "description": "Denver Kung Fu — The Jong. Single-page showcase for handcrafted Muk Yan Jong by Mike Kilcoyne. Static site.",
+  "private": true,
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "optimize": "node scripts/optimize-images.js",
+    "html": "node scripts/build-html.js",
+    "build": "npm run optimize && npm run html"
   },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "stripe": "^15.7.0"
+  "devDependencies": {
+    "sharp": "^0.33.4"
   },
   "engines": {
     "node": ">=18"

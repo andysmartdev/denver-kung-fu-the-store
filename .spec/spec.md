@@ -80,6 +80,22 @@ As a potential customer, I can watch two short videos about the jong maker, but 
 - **Deploy:** existing `.github/workflows/deploy.yml` unchanged (publishes `./public`).
 - **Removed files:** `server.js`, `public/reserve.html`, `public/success.html`, `public/the-jong.html`, `public/js/reserve.js`, `.env.example`.
 
+## Post-ship addition (2026-07-19) — build-time content config
+
+After the initial ship, added a lean single-source-of-truth layer at the user's request
+(phone number was hardcoded ~9×). Kept build-time, NOT client-side, because contact info
+is the page's core content and must stay crawlable / JS-independent:
+- `site.config.js` — all repeated content (phone/email/address/meta/video tiles).
+- `src/index.html` — template with `{{dot.path}}` placeholders + `{{@videos}}` block.
+- `scripts/build-html.js` — dumb scalar substituter; renders video tiles from config;
+  **fails the build on any unresolved placeholder.** No template engine (no loops/conditionals).
+- `public/index.html` is now GENERATED + committed (same author-time pattern as the WebP
+  images; CI still only publishes `./public`). `npm run build` = optimize + html.
+Also: removed all inline `style=` attributes → semantic CSS classes (poster background-images
+stay inline but are config-driven), and converted CSS `px`→`rem` for dimensions/spacing and
+`px`→`em` for media-query breakpoints (accessibility: respects user font-size/zoom). Kept `px`
+deliberately for hairline borders/outlines/blur/decorative gradients.
+
 ## Definition of Done (Verify)
 
 - P1 acceptance all pass against the rendered page in a real browser (desktop + mobile viewport).

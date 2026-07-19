@@ -2,3 +2,9 @@ node_modules/
 .env
 .claude
 feedback
+
+# local verification artifacts
+*.png
+!public/assets/**
+public/_*.html
+.memsearch/

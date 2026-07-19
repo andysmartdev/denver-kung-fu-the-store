@@ -11,23 +11,50 @@ inquire. No online payments, no forms, no server — just a fast static page.
 
 ## How it's built
 
-Plain static HTML/CSS/JS in `public/`. No framework, no runtime server. The only
-tooling is an image-optimization script you run at author time; its output is committed,
-so the deployed site is 100% static.
+Plain static HTML/CSS/JS in `public/`. No framework, no runtime server. Two small
+author-time build steps produce the committed output, so the **deployed site is 100%
+static** — no build runs on the visitor's browser or on the deploy host.
 
 ```
-public/
-  index.html        the whole site (one page)
-  css/styles.css    styles (brand tokens: green #0F713E, red #C3262D, cream, dark)
-  js/main.js        nav scroll state, scroll-reveal, click-to-load video
-  assets/           optimized .webp images (committed) + the logo
-assets-src/         original full-res photos (source of truth; not published)
+site.config.js        SINGLE SOURCE OF TRUTH — phone, email, address, meta, video tiles
+src/index.html        HTML template (edit layout here; uses {{placeholders}})
 scripts/
-  optimize-images.js  sharp build script → optimized WebP into public/assets/
+  build-html.js       stamps site.config.js into public/index.html
+  optimize-images.js   sharp → optimized WebP into public/assets/
+assets-src/           original full-res photos (source of truth; not published)
+public/               ← GENERATED + committed; this is what deploys
+  index.html          generated from src/ + site.config.js — DO NOT edit by hand
+  css/styles.css      styles (brand tokens: green #0F713E, red #C3262D, cream, dark)
+  js/main.js          nav scroll state, scroll-reveal, click-to-load video
+  assets/             optimized .webp images + the logo
 ```
 
-To preview locally, just open `public/index.html` in a browser (or serve `public/`
-with any static server).
+### The one rule that matters
+
+**Don't edit `public/index.html` directly — it's generated and will be overwritten.**
+Edit `src/index.html` (layout) or `site.config.js` (content), then run the build.
+
+### Build commands
+
+```bash
+npm install        # first time only
+npm run build      # optimize images + generate public/index.html
+# or individually:
+npm run optimize   # just re-generate the WebP images
+npm run html       # just re-stamp public/index.html from the template + config
+```
+
+`npm run html` fails loudly if the template has an unresolved `{{placeholder}}`, so a
+typo can't ship a literal `{{phone.display}}` to the page.
+
+### Changing the phone number, email, etc.
+
+Edit the value **once** in `site.config.js`, run `npm run build`, commit. It updates
+everywhere it appears (hero, nav, contact cards, footer, `tel:`/`sms:`/`mailto:` links,
+and the page metadata) — no find-and-replace.
+
+To preview locally, open `public/index.html` in a browser (or serve `public/` with any
+static server).
 
 ---
 
@@ -55,20 +82,23 @@ Budgets the script targets: hero/full-bleed ≤ ~250 KB (max 1920px), gallery/in
 ## Adding the real videos
 
 The two tiles under **"Meet the Maker"** are click-to-load facades: nothing heavy loads
-until the visitor clicks. Wiring a real video is a **one-attribute edit** in `index.html` —
-set the tile's `data-src` to a YouTube/Vimeo **embed** URL:
+until the visitor clicks. They're defined in the `videos` array in **`site.config.js`**.
+To wire a real video, edit that entry:
 
-```html
-<!-- before (placeholder) -->
-<button ... class="video-tile fade-in" data-src="" aria-label="Play video: Meet the Maker (coming soon)">
-
-<!-- after -->
-<button ... class="video-tile fade-in" data-src="https://www.youtube.com/embed/VIDEO_ID" aria-label="Play video: Meet the Maker">
+```js
+{
+  kicker: 'Interview',
+  title:  'Meet the Maker',
+  note:   '',                                             // was 'Coming soon' — clear it
+  poster: 'assets/jong-4.webp',
+  src:    'https://www.youtube.com/embed/VIDEO_ID',       // YouTube/Vimeo EMBED url
+  ariaLabel: 'Play video: Meet the Maker',                // drop " (coming soon)"
+},
 ```
 
-Then remove the `<span class="video-tile__note">Coming soon</span>` line for that tile.
-On click, the script injects an autoplaying iframe. (Self-hosted `<video>` isn't wired
-today; it's a small addition to `main.js` if ever needed.)
+Then `npm run html` (or `npm run build`). On click, the script injects an autoplaying
+iframe from `src`. (Self-hosted `<video>` isn't wired today; it's a small addition to
+`main.js` if ever needed.)
 
 ---
 
