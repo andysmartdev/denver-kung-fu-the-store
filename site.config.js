@@ -18,11 +18,6 @@ module.exports = {
   emailHref: 'mailto:admin@denverkungfu.com',
   emailCta: 'Email Us',       // short label for the nav + hero buttons
 
-  address: {
-    line1: '1832 S Broadway',
-    line2: 'Denver, CO 80210',
-  },
-
   year: 2026,
 
   // <head> metadata

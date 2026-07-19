@@ -294,9 +294,10 @@ p  {
   right: 1rem; top: 50%;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
+  white-space: nowrap;
   font-family: 'Noto Serif SC', serif;
   font-size: clamp(5rem, 14vw, 12rem);
-  color: rgba(195,38,45,0.07);
+  color: rgba(195,38,45,0.16);
   line-height: 1;
   user-select: none;
   pointer-events: none;
@@ -348,24 +349,6 @@ p  {
   line-height: 1.8;
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
-
-.hero__scroll {
-  position: absolute;
-  bottom: 2.5rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  color: rgba(255,255,255,0.22);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  z-index: 2;
-}
-.hero__scroll-line {
-  width: 1px; height: 2.25rem;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
-  animation: scrollFade 2.2s ease-in-out infinite;
-}
-@keyframes scrollFade { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
 /* ============================================================
    SPLIT LAYOUT
@@ -461,14 +444,6 @@ p  {
   transition: color 0.2s;
 }
 .footer__col ul a:hover { color: rgba(255,255,255,0.75); }
-.footer__contact p {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.32);
-  line-height: 1.75;
-  margin-bottom: 0.4rem;
-}
-.footer__contact a { color: inherit; transition: color 0.2s; }
-.footer__contact a:hover { color: rgba(255,255,255,0.7); }
 .footer__bottom {
   padding-top: 2rem;
   text-align: center;
@@ -702,7 +677,7 @@ p  {
   overflow-wrap: anywhere;
 }
 
-/* Simple footer grid (business-card layout) */
+/* Simple footer grid (business-card layout): logo/tagline + one links column */
 @media (min-width: 56.25em) {
-  .footer__grid--simple { grid-template-columns: 2fr 1fr 1.5fr; }
+  .footer__grid--simple { grid-template-columns: 2fr 1fr; }
 }
