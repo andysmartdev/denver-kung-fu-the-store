@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Manual "Run workflow" button in the Actions tab — pick ANY branch from the
+  # dropdown to publish it to the (single) Pages site on demand.
+  workflow_dispatch:
 
 permissions:
   contents: write
