@@ -13,6 +13,13 @@
  */
 
 module.exports = {
+  // Canonical site origin — single source of truth for absolute URLs (canonical,
+  // og:image, sitemap, robots, JSON-LD). No trailing slash.
+  site: {
+    origin: 'https://www.denverkungfu-jongs.com',
+    name:   'Denver Kung Fu Jongs',
+  },
+
   // Contact is email-only for now (phone removed at Sifu's request 2026-07-19).
   email: 'admin@denverkungfu.com',
   emailHref: 'mailto:admin@denverkungfu.com',
@@ -20,14 +27,35 @@ module.exports = {
 
   year: 2026,
 
-  // <head> metadata
+  // <head> metadata. NOTE: title/description are SERP text (search results +
+  // social), NOT visible page copy — safe to keyword-optimize without changing
+  // the approved page. Both spellings (Wing Chun / Ving Tsun) + "wooden dummy" +
+  // "for sale" intent are woven in for search coverage.
   meta: {
-    title:       'Denver Kung Fu · The Jong — Handcrafted Muk Yan Jong by Mike Kilcoyne',
-    description: 'Handcrafted Muk Yan Jong (wooden dummy) by Mike Kilcoyne — senior student of Denver Kung Fu. Authentic Ving Tsun training tools, made to order from solid American hardwood. Email to inquire.',
-    canonical:   'https://denverkungfu.github.io/',
-    ogTitle:     'The Jong — Handcrafted Muk Yan Jong · Denver Kung Fu',
-    ogDescription: 'Authentic Ving Tsun wooden dummies, handcrafted from solid American hardwood by Mike Kilcoyne. Made to order.',
-    ogImage:     'assets/jong-2.webp',
+    title:       'Wing Chun Wooden Dummy for Sale — Handcrafted Muk Yan Jong | Denver, CO',
+    description: 'Handcrafted Wing Chun / Ving Tsun wooden dummies (Muk Yan Jong) for sale, made to order in Denver, Colorado by Mike Kilcoyne. Solid ash, hand-finished with tung oil, custom oak framing available. Email to inquire.',
+    ogTitle:     'Wing Chun Wooden Dummy (Muk Yan Jong) — Handcrafted in Denver',
+    ogDescription: 'Authentic Wing Chun / Ving Tsun wooden dummies, handcrafted from solid ash by Mike Kilcoyne of Denver Kung Fu. Made to order in Denver, Colorado.',
+    ogImage:     'assets/wing-chun-wooden-dummy-full.webp',
+    keywordsNote: 'Google ignores meta keywords; intentionally omitted.',
+  },
+
+  // Structured data / entity SEO. sameAs ties the page to high-authority
+  // entities (Wikipedia) for topical relevance — invisible to visitors.
+  seo: {
+    maker: 'Mike Kilcoyne',
+    priceRange: '$$$',
+    areaServed: ['Denver', 'Colorado', 'United States'],
+    // Lineage entities with public knowledge-graph pages — used in JSON-LD sameAs
+    // and mentionsEntity so the AI/answer engines connect the dots (incl. Bruce Lee).
+    lineageSameAs: [
+      'https://en.wikipedia.org/wiki/Ip_Man',
+      'https://en.wikipedia.org/wiki/Bruce_Lee',
+      'https://en.wikipedia.org/wiki/Moy_Yat',
+      'https://en.wikipedia.org/wiki/Wing_Chun',
+      'https://en.wikipedia.org/wiki/Mook_jong',
+    ],
+    schoolUrl: 'https://www.denverkungfu.com',
   },
 
   // Two video tiles (click-to-load facade).
@@ -38,7 +66,7 @@ module.exports = {
       kicker: 'Interview',
       title:  'Meet the Maker',
       note:   'Coming soon',
-      poster: 'assets/jong-4.webp',
+      poster: 'assets/muk-yan-jong-ash-oak-detail.webp',
       src:    '',
       ariaLabel: 'Play video: Meet the Maker (coming soon)',
     },
@@ -46,7 +74,7 @@ module.exports = {
       kicker: 'In the Workshop',
       title:  'Making a Jong',
       note:   'Coming soon',
-      poster: 'assets/jong-3.webp',
+      poster: 'assets/muk-yan-jong-side-angle.webp',
       src:    '',
       ariaLabel: 'Play video: Making a Jong (coming soon)',
     },

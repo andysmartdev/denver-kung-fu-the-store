@@ -194,8 +194,8 @@ p  {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../assets/jongwall-narrow.webp');
-  background-image: image-set(url('../assets/jongwall-narrow.webp') 1x);
+  background-image: url('../assets/jong-wall-overlay.webp');
+  background-image: image-set(url('../assets/jong-wall-overlay.webp') 1x);
   background-size: cover;
   background-position: top center;
   opacity: 0.18;
@@ -512,10 +512,10 @@ p  {
 .hero--bg {
   background-image:
     linear-gradient(to right, rgba(14,12,10,0.82) 0%, rgba(14,12,10,0.55) 100%),
-    url('../assets/jongwall-wide.webp');
+    url('../assets/wing-chun-jong-wall-denver.webp');
   background-image:
     linear-gradient(to right, rgba(14,12,10,0.82) 0%, rgba(14,12,10,0.55) 100%),
-    image-set(url('../assets/jongwall-wide.webp') 1x);
+    image-set(url('../assets/wing-chun-jong-wall-denver.webp') 1x);
   background-size: cover;
   background-position: top center;
 }

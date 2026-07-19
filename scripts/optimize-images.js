@@ -34,15 +34,16 @@ const PROFILES = {
 
 // Explicit source → output-name + profile mapping.
 // Keeps output names stable and lowercase regardless of messy source casing.
+// Output names are SEO-descriptive (keyword-rich, honest to what each image shows).
 const MAP = {
-  'JongWall_wide.JPEG':   { out: 'jongwall-wide',   profile: 'fullbleed' },
-  'JongWall_narrow.JPEG': { out: 'jongwall-narrow', profile: 'overlay' },
-  'Jong_1.JPEG':          { out: 'jong-1',          profile: 'inline' },
-  'Jong_2.JPEG':          { out: 'jong-2',          profile: 'inline' },
-  'Jong_3.JPEG':          { out: 'jong-3',          profile: 'inline' },
-  'Jong_4.JPEG':          { out: 'jong-4',          profile: 'inline' },
-  'Jong_5.JPEG':          { out: 'jong-5',          profile: 'inline' },
-  'Jong_6.JPEG':          { out: 'jong-6',          profile: 'inline' },
+  'JongWall_wide.JPEG':   { out: 'wing-chun-jong-wall-denver',   profile: 'fullbleed' },
+  'JongWall_narrow.JPEG': { out: 'jong-wall-overlay',            profile: 'overlay' },
+  'Jong_1.JPEG':          { out: 'handcrafted-jong-arm-joinery', profile: 'inline' },
+  'Jong_2.JPEG':          { out: 'wing-chun-wooden-dummy-full',  profile: 'inline' },
+  'Jong_3.JPEG':          { out: 'muk-yan-jong-side-angle',      profile: 'inline' },
+  'Jong_4.JPEG':          { out: 'muk-yan-jong-ash-oak-detail',  profile: 'inline' },
+  'Jong_5.JPEG':          { out: 'wing-chun-wooden-dummy-arms',  profile: 'inline' },
+  'Jong_6.JPEG':          { out: 'wing-chun-dummy-training',     profile: 'inline' },
 };
 
 // Any source file not in MAP gets this treatment (lowercased basename, inline).

@@ -12,22 +12,38 @@
 
   <title>{{meta.title}}</title>
   <meta name="description" content="{{meta.description}}">
-  <link rel="canonical" href="{{meta.canonical}}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{{site.origin}}/">
+  <meta name="theme-color" content="#0F713E">
 
-  <!-- Open Graph / social share -->
+  <!-- Local / geo signals (invisible; for search engines) -->
+  <meta name="geo.region" content="US-CO">
+  <meta name="geo.placename" content="Denver, Colorado">
+
+  <!-- Open Graph / social share (absolute URLs — required by crawlers) -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{site.name}}">
+  <meta property="og:url" content="{{site.origin}}/">
   <meta property="og:title" content="{{meta.ogTitle}}">
   <meta property="og:description" content="{{meta.ogDescription}}">
-  <meta property="og:image" content="{{meta.ogImage}}">
+  <meta property="og:image" content="{{site.origin}}/{{meta.ogImage}}">
+  <meta property="og:image:alt" content="Handcrafted Wing Chun wooden dummy (Muk Yan Jong) by Mike Kilcoyne">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{meta.ogTitle}}">
   <meta name="twitter:description" content="{{meta.ogDescription}}">
-  <meta name="twitter:image" content="{{meta.ogImage}}">
+  <meta name="twitter:image" content="{{site.origin}}/{{meta.ogImage}}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Preload the hero LCP background image (Core Web Vitals) -->
+  <link rel="preload" as="image" href="assets/wing-chun-jong-wall-denver.webp" fetchpriority="high">
+
+  <!-- Structured data (JSON-LD) — invisible to visitors; feeds Google rich
+       results + AI answer engines. Generated from site.config.js. -->
+  {{@jsonld}}
 </head>
 
 <body data-transparent-nav="true">
@@ -73,13 +89,13 @@
     <div class="container container--gallery">
       <div class="gallery">
         <div class="gallery__main">
-          <img src="assets/jong-2.webp" alt="Handcrafted Muk Yan Jong — full view showing frame, arms, and leg" loading="lazy">
+          <img src="assets/wing-chun-wooden-dummy-full.webp" alt="Handcrafted Wing Chun wooden dummy (Muk Yan Jong) — full view showing ash frame, arms, and leg" loading="lazy">
         </div>
         <div class="gallery__thumb">
-          <img src="assets/jong-5.webp" alt="Close-up of the jong's arms and trunk detail" loading="lazy">
+          <img src="assets/wing-chun-wooden-dummy-arms.webp" alt="Close-up of the Wing Chun wooden dummy's arms and ash trunk detail" loading="lazy">
         </div>
         <div class="gallery__thumb">
-          <img src="assets/jong-3.webp" alt="Side angle of the jong showing arm construction" loading="lazy">
+          <img src="assets/muk-yan-jong-side-angle.webp" alt="Side angle of the Muk Yan Jong showing Ving Tsun arm construction" loading="lazy">
         </div>
       </div>
     </div>
@@ -110,7 +126,7 @@
           </p>
         </div>
         <div class="split__media fade-in">
-          <img src="assets/jong-6.webp" alt="Practitioner training on the Muk Yan Jong — hands working between the arms" loading="lazy">
+          <img src="assets/wing-chun-dummy-training.webp" alt="Practitioner training on the Wing Chun wooden dummy — hands working between the jong's arms" loading="lazy">
         </div>
       </div>
     </div>
@@ -121,7 +137,7 @@
     <div class="container">
       <div class="split split--reverse">
         <div class="split__media fade-in">
-          <img src="assets/jong-1.webp" alt="Close-up of jong arm joinery showing wood grain and craftsmanship" loading="lazy">
+          <img src="assets/handcrafted-jong-arm-joinery.webp" alt="Close-up of handcrafted jong arm joinery showing ash wood grain and craftsmanship by Mike Kilcoyne" loading="lazy">
         </div>
         <div class="split__text fade-in">
           <span class="label">The Maker</span>
@@ -181,7 +197,7 @@
           </p>
         </div>
         <div class="split__media fade-in">
-          <img src="assets/jong-4.webp" alt="Detail of the jong's ash body and oak frame, hand-finished with tung oil" loading="lazy">
+          <img src="assets/muk-yan-jong-ash-oak-detail.webp" alt="Detail of the jong's ash body and oak frame, hand-finished with tung oil" loading="lazy">
         </div>
       </div>
     </div>
