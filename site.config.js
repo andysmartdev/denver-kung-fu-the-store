@@ -33,9 +33,9 @@ module.exports = {
   // "for sale" intent are woven in for search coverage.
   meta: {
     title:       'Wing Chun Wooden Dummy for Sale — Handcrafted Muk Yan Jong | Denver, CO',
-    description: 'Handcrafted Wing Chun / Ving Tsun wooden dummies (Muk Yan Jong) for sale, made to order in Denver, Colorado by Mike Kilcoyne. Solid ash, hand-finished with tung oil, custom oak framing available. Email to inquire.',
+    description: 'Handcrafted Wing Chun / Ving Tsun wooden dummies (Muk Yan Jong) for sale, made to order in Denver, Colorado. Solid ash, hand-finished with tung oil, custom oak framing available. Email to inquire.',
     ogTitle:     'Wing Chun Wooden Dummy (Muk Yan Jong) — Handcrafted in Denver',
-    ogDescription: 'Authentic Wing Chun / Ving Tsun wooden dummies, handcrafted from solid ash by Mike Kilcoyne of Denver Kung Fu. Made to order in Denver, Colorado.',
+    ogDescription: 'Authentic Wing Chun / Ving Tsun wooden dummies, handcrafted from solid ash in Denver, Colorado. Made to order in the Moy Tung Kung Fu family tradition.',
     ogImage:     'assets/wing-chun-wooden-dummy-full.webp',
     keywordsNote: 'Google ignores meta keywords; intentionally omitted.',
   },
@@ -43,7 +43,6 @@ module.exports = {
   // Structured data / entity SEO. sameAs ties the page to high-authority
   // entities (Wikipedia) for topical relevance — invisible to visitors.
   seo: {
-    maker: 'Mike Kilcoyne',
     priceRange: '$$$',
     areaServed: ['Denver', 'Colorado', 'United States'],
     // Lineage entities with public knowledge-graph pages — used in JSON-LD sameAs
@@ -63,12 +62,12 @@ module.exports = {
   // (set it to ''), and drop " (coming soon)" from `ariaLabel`. Then `npm run build`.
   videos: [
     {
-      kicker: 'Interview',
-      title:  'Meet the Maker',
+      kicker: 'The Tradition',
+      title:  'The Art of Ving Tsun',
       note:   'Coming soon',
       poster: 'assets/muk-yan-jong-ash-oak-detail.webp',
       src:    '',
-      ariaLabel: 'Play video: Meet the Maker (coming soon)',
+      ariaLabel: 'Play video: The Art of Ving Tsun (coming soon)',
     },
     {
       kicker: 'In the Workshop',

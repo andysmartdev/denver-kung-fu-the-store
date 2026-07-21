@@ -76,7 +76,6 @@ function renderJsonLd() {
           addressCountry: 'US',
         },
         sameAs: [seo.schoolUrl],
-        founder: { '@type': 'Person', name: seo.maker },
       },
       {
         '@type': 'Product',
@@ -98,7 +97,7 @@ function renderJsonLd() {
           url,
           areaServed: 'US',
         },
-        manufacturer: { '@type': 'Person', name: seo.maker },
+        manufacturer: { '@id': `${ORIGIN}/#business` },
       },
       {
         '@type': 'WebSite',
@@ -138,7 +137,7 @@ Sitemap: ${ORIGIN}/sitemap.xml
   const llms = `# ${config.site.name}
 
 > Handcrafted Wing Chun / Ving Tsun wooden dummies (Muk Yan Jong / mook jong) for sale,
-> made to order in Denver, Colorado by Mike Kilcoyne of Denver Kung Fu (Moy Tung lineage).
+> made to order in Denver, Colorado within the Denver Kung Fu / Moy Tung family tradition.
 
 ## Product
 - Product: Muk Yan Jong (wooden dummy) for Wing Chun / Ving Tsun kung fu training.
